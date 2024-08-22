@@ -1,10 +1,5 @@
 package usables;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.Connection;
-
+import java.sql.*;
 
 
 public class LibManagement {
@@ -12,24 +7,38 @@ public class LibManagement {
 
     public LibManagement(){
     }
+
+
+
     //add
+    public static void addFilms(Film film) {
 
-    public static void addfilm() {
+        int id = film.getId();
+        int year = film.getYear();
+        String name = film.getName();
+        String genre = film.getGenre();
+
         try {
-
+            String sql = "INSERT INTO films (id,name, year, genre) VALUES (?, ?, ?, ?)";
             Connection conn = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/filmsDB",
                     "root",
                     "lucas123"
             );
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from users");
-            while (rs.next()) {
-                System.out.print("UserName : "+rs.getString("username")+"  ");
-                System.out.print("Password : "+rs.getString("password")+"  ");
-                System.out.println("Name : "+ rs.getString("name")+"  ");
-                System.out.println("[TypeOfUser : "+ rs.getString("type_of_user")+"]  ");
+
+
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setInt(1, id);
+            statement.setString(2, name);
+            statement.setInt(3, year);
+            statement.setString(4, genre);
+
+            int rowsInserted = statement.executeUpdate();
+            if (rowsInserted > 0) {
+                System.out.println("A new user was inserted successfully!");
             }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
