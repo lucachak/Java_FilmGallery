@@ -18,7 +18,7 @@ public class User {
 
     //methods
     public String getFilmInfo(Film film){
-        if(film.Feedback() == "good"){
+        if(film.Feedback().equals("good")){
             return "good";
         }else {
             return "bad";

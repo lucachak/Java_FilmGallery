@@ -17,6 +17,6 @@ public class Main {
 
         */
 
-        LibManagement.addfilm(film);
+        LibManagement.addfilm();
     }
 }

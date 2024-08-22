@@ -1,34 +1,37 @@
 package usables;
-import java.sql.*;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Connection;
+
+
 
 public class LibManagement {
-
     private Film film;
 
-    public LibManagement(Film film){
-        this.film = film;
+    public LibManagement(){
     }
     //add
 
-    public static void addfilm(Film film) {
+    public static void addfilm() {
         try {
+
             Connection conn = DriverManager.getConnection(
-                    "jdbc:mariadb://localhost:3306/filmsDB",
+                    "jdbc:mysql://localhost:3306/filmsDB",
                     "root",
                     "lucas123"
             );
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("select * from users");
             while (rs.next()) {
-                System.out.println(rs.getString("username"));
-                System.out.println(rs.getString("password"));
-                System.out.println(rs.getString("name"));
-                System.out.println(rs.getString("type_of_user"));
+                System.out.print("UserName : "+rs.getString("username")+"  ");
+                System.out.print("Password : "+rs.getString("password")+"  ");
+                System.out.println("Name : "+ rs.getString("name")+"  ");
+                System.out.println("[TypeOfUser : "+ rs.getString("type_of_user")+"]  ");
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
-
         }
     }
 
