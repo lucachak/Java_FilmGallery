@@ -13,5 +13,14 @@ public class Admin extends User {
         this.password = password;
     }
 
+    //add film
+    //remove film
 
+    //add user
+    //remove user
+
+    //check films
+    //check if is there any that was borrowed
+
+    //check staff
 }

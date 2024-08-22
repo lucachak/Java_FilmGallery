@@ -14,4 +14,11 @@ public class Staff extends User{
     public void setId(int id) {
         super.setId(id);
     }
+
+    //get all films
+    //check films that are borrowed
+    //add films
+    //remove films
+    //update films
+
 }

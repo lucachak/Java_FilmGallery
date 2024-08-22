@@ -8,7 +8,7 @@ import java.sql.Connection;
 
 
 public class LibManagement {
-    private Film film;
+    //private Film films;
 
     public LibManagement(){
     }

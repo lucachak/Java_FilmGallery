@@ -9,4 +9,8 @@ public class Student extends User{
         super(id,name);
         this.classID = classID;
     }
+
+    //borrow film
+    //check all possible films
+    //return film
 }
