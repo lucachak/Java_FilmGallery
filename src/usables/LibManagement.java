@@ -1,8 +1,19 @@
 package usables;
 import java.sql.*;
-
+import java.util.Scanner;
 
 public class LibManagement {
+
+    private static Connection connection(){
+        try {
+            Connection conn = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/filmsDB", "root", "lucas123");
+            return conn;
+        }catch (SQLException e){
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     //add
     public static void addFilms(Film film) {
@@ -14,10 +25,8 @@ public class LibManagement {
 
 
         try {
-
+            Connection conn = connection();
             String sql = "INSERT INTO films (id,name, year, genre) VALUES (?, ?, ?, ?)";
-            Connection conn = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/filmsDB", "root", "lucas123");
 
             Statement stmt = conn.createStatement();
 
@@ -30,7 +39,7 @@ public class LibManagement {
 
             int rowsInserted = statement.executeUpdate();
             if (rowsInserted > 0) {
-                System.out.println("A new user was inserted successfully!");
+                System.out.println("A new film was inserted successfully!");
             }
 
         } catch (SQLException e) {
@@ -40,13 +49,11 @@ public class LibManagement {
 
 
     //delete
-    public static void deleteFilms(Film film) {
+    public static void deleteFilms(int id) {
         String sql = "DELETE FROM films WHERE id = ?";
-        int id = film.getId();
 
         try{
-            Connection conn = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/filmsDB", "root", "lucas123");
+            Connection conn = connection();
             Statement stmt = conn.createStatement();
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setInt(1,id);
@@ -63,18 +70,13 @@ public class LibManagement {
 
 
     //update
-    public static void updateFilms(Film film) {
-        int id=film.getId();
-        int year = film.getYear();
-        String name = film.getName();
-        String genre = film.getGenre();
-        int new_id = 1002;
-
+    public static void updateFilms(int id) {
         String statement = "UPDATE films SET id = ? WHERE id = ?";
-
+        System.out.println("new id: ");
+        Scanner scanner = new Scanner(System.in);
+        int new_id = Integer.valueOf(scanner.nextLine());
         try{
-            Connection conn = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/filmsDB", "root", "lucas123");
+            Connection conn = connection();
 
             PreparedStatement preparedStatement = conn.prepareStatement(statement);
             preparedStatement.setInt(1, new_id);
@@ -82,7 +84,7 @@ public class LibManagement {
 
             int rowsChanged = preparedStatement.executeUpdate();
             if (rowsChanged > 0) {
-                System.out.println("A new user was updated successfully!");
+                System.out.println("The film was updated successfully!");
             }
 
 
@@ -93,11 +95,10 @@ public class LibManagement {
     };
 
     //Display
-    public static void DisplayFilms() {
-        try {
-            Connection conn = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/filmsDB", "root", "lucas123");
+    public static void displayFilms() {
 
+        try {
+            Connection conn = connection();
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM films");
 
