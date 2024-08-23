@@ -17,13 +17,7 @@ public class User {
     public void setName(String name) {this.name = name;}
 
     //methods
-    public String getFilmInfo(Film film){
-        if(film.Feedback().equals("good")){
-            return "good";
-        }else {
-            return "bad";
-        }
-    }
+
 
     public void getDept(){};
     public void getClassStudent(){};
