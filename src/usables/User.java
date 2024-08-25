@@ -16,8 +16,9 @@ public class User {
     public void setId(int id) {this.id = id;}
     public void setName(String name) {this.name = name;}
 
-    //methods
 
+
+    //methods
 
     public void getDept(){};
     public void getClassStudent(){};

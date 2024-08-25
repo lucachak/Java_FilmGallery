@@ -16,7 +16,15 @@ public class Staff extends User{
     }
 
     //get all films
+    private void display() {
+        LibManagement.displayFilms();
+    }
+
     //check films that are borrowed
+    private void onStock(int id){
+        LibManagement.displayFilms();
+    }
+
     //add films
     //remove films
     //update films
