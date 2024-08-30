@@ -1,5 +1,7 @@
 import usables.Film;
 import usables.LibManagement;
+import usables.checkStaff;
+
 import java.util.Scanner;
 
 public class Main {
@@ -12,10 +14,12 @@ public class Main {
         while(true){
             System.out.print("Enter the option:\n[1] - update film\n[2] - delete film\n[3] - Display films\n[4] - add films\n[5] - Search for film\n[0] - Break\n ->");
             int valOption;
-            try{
+            try {
                 valOption = Integer.parseInt(scanner.nextLine());
-                if (valOption == 0){
+                if (valOption == 0) {
                     break;
+                }else if (valOption == 10){
+                    checkStaff.getInfoStaff();
                 }else if(valOption == 1){
                     LibManagement.displayFilms();
                     System.out.print("Enter the film id: ");
