@@ -10,6 +10,16 @@ public class Main {
         /*
          [  TO DO  ]
            - Implement all the methods to all classes.
+
+
+           - Clean/Refactor everything
+           - Fix error DB-adm not in
+           - Finish and Move classes for the sake of organization
+           - ... it's messy
+
+
+
+
         */
         while(true){
             System.out.print("Enter the option:\n[1] - update film\n[2] - delete film\n[3] - Display films\n[4] - add films\n[5] - Search for film\n[0] - Break\n ->");
@@ -19,7 +29,12 @@ public class Main {
                 if (valOption == 0) {
                     break;
                 }else if (valOption == 10){
-                    checkStaff.getInfoStaff();
+                    System.out.print("Enter the id, username, password: ");
+                    int id = Integer.parseInt(scanner.nextLine());
+                    String username = scanner.nextLine();
+                    String password = scanner.nextLine();
+                    checkStaff check = new checkStaff(id,username,password);
+                    System.out.println(check.getInfoStaff());
                 }else if(valOption == 1){
                     LibManagement.displayFilms();
                     System.out.print("Enter the film id: ");
